@@ -1,0 +1,63 @@
+<!-- unit-converter-client/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:,">
+  <title>Unit Converter</title>
+</head>
+<body>
+  <h1>Unit Converter</h1>
+  <form id="converterForm">
+    <label for="value">Enter Value:</label>
+    <input type="number" id="value" name="value" required>
+    
+    <label for="conversionType">Select Conversion:</label>
+    <select id="conversionType" name="conversionType" required>
+        <option value="feetToInches">Feet to Inches</option>
+        <option value="inchesToFeet">Inches to Feet</option>
+        <option value="literToGallon">Liter to Gallon</option>
+        <option value="gallonToLiter">Gallon to Liter</option>
+        <option value="poundToKilogram">Pound to Kilogram</option>
+        <option value="kilogramToPound">Kilogram to Pound</option>
+        <option value="celsiusToFahrenheit">Celsius to Fahrenheit</option>
+        <option value="fahrenheitToCelsius">Fahrenheit to Celsius</option>
+        <option value="milesToKilometers">Miles to Kilometers</option>
+        <option value="kilometersToMiles">Kilometers to Miles</option>
+      </select>
+
+    <button type="button" onclick="convert()">Convert</button>
+  </form>
+
+  <div id="result"></div>
+
+  <!-- unit-converter-client/index.html -->
+<script>
+    async function convert() {
+      const form = document.getElementById('converterForm');
+      const resultDiv = document.getElementById('result');
+  
+      const value = form.querySelector('#value').value;
+      const conversionType = form.querySelector('#conversionType').value;
+  
+      const formData = { value, conversionType };
+      console.log('Form Data:', formData);
+  
+      const response = await fetch('http://localhost:3000/convert', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      const data = await response.json();
+      console.log('Response Data:', data);
+  
+      resultDiv.innerHTML = `Result: ${data.result}`;
+    }
+  </script>
+  
+</body>
+</html>
