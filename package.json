@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "lite-server",
-    "build": "webpack --config webpack.config.js"
+    "build": "npm install --yes && webpack --config webpack.config.js"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
