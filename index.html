@@ -32,29 +32,7 @@
 
   <div id="result"></div>
 
-  <script>
-    async function convert() {
-      const form = document.getElementById('converterForm');
-      const resultDiv = document.getElementById('result');
-  
-      const value = form.querySelector('#value').value;
-      const conversionType = form.querySelector('#conversionType').value;
-  
-      const formData = { value, conversionType };
-  
-      const response = await fetch('http://localhost:3000/convert', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-  
-      const data = await response.json();
-  
-      resultDiv.innerHTML = `Result: ${data.result}`;
-    }
-  </script>
-  
+  <!-- Import the JavaScript file -->
+  <script type="module" src="./myscript.js"></script>
 </body>
 </html>
